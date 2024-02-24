@@ -4,27 +4,26 @@ import openai
 # Set your OpenAI API key
 openai.api_key = "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"
 
-# Function to interact with ChatGPT
-def chat_with_gpt(prompt):
-    response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
-            {"role": "user", "content": prompt},
-        ],
+# Function to interact with OpenAI for text generation
+def generate_text(prompt):
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=prompt,
+        max_tokens=100
     )
-    return response['choices'][0]['message']['content']
+    return response.choices[0].text.strip()
 
 # Streamlit app
 def main():
-    st.title("Chat with Nugroho (assisted by ChatGPT)")
-    st.write("Enter your message below:")
+    st.title("Nugroho (Text Generation with OpenAI)")
+    st.write("Enter your prompt below:")
 
-    user_input = st.text_input("You:", "")
-    if st.button("Send"):
+    user_input = st.text_area("Prompt:", "")
+    if st.button("Generate"):
         if user_input:
-            response = chat_with_gpt(user_input)
-            st.text_area("ChatGPT:", value=response, height=200, max_chars=None, key=None)
+            response = generate_text(user_input)
+            st.text_area("Generated Text:", value=response, height=200, max_chars=None, key=None)
 
 if __name__ == "__main__":
     main()
+
