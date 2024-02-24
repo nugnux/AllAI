@@ -17,7 +17,7 @@ def chat_with_gpt(prompt):
 
 # Streamlit app
 def main():
-    st.title("Chat with ChatGPT")
+    st.title("Chat with Nugroho (assisted by ChatGPT)")
     st.write("Enter your message below:")
 
     user_input = st.text_input("You:", "")
