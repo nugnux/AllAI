@@ -1,8 +1,9 @@
 import streamlit as st
 import openai
+import os
 
 # Set your OpenAI API key
-openai.api_key = "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"
+openai.api_key = st.secrets["API_KEY"]
 
 
 # Function to interact with ChatGPT
